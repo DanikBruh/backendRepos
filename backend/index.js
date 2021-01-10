@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require('cors');
-
 const { Sequelize, Model, DataTypes } = require("sequelize");
+
 const sequelize = new Sequelize("sqlite:./main.db", {
   logging: false,
   dialect: "sqlite",
@@ -32,32 +32,34 @@ let users = [{number:31,first_name:"Jarrett",last_name:"Allen",avatar:"https://a
 
 
 const app = express();
-const port = 3000;
 app.use(express.json());
 app.use(cors());
-
+const port = 3000;
 
 (async () => {
     await sequelize.sync({ alter: true });
 
     app.get('/users',async(req, res) => {
         const all = await User.findAll();
-        res.status(200).send(JSON.stringify(users))
+        res.send(JSON.stringify(all))
     });
 
     app.post('/users', async (req, res) => {
+      if(true) {
         const user = await User.create({ 
-            first_name: req.body.first_name,
-            last_name: req.body.last_name, 
-            avatar: req.body.avatar, 
+          first_name: req.body.first_name,
+          last_name: req.body.last_name, 
+          avatar: req.body.avatar, 
         });
-        res.status(201).send("{"code":201}");
+        res.status(201).send('{"code":201}');
+      }
     })
 })();
-
 
 app.listen(port, () => {
     console.log(`Сервер был запущен: http://localhost:${port}\n`);
 })
+
+
 
 // https://www.toptal.com/developers/gitignore/api/csharp 

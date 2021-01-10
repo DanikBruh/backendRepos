@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+#people {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: auto;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+    
+}
+.person {
+    font-family: 'Montserrat', sans-serif;
+    /* border: 2px solid black; */
+    text-align: center;
+    min-width: 260px;
+    width: 30%;
+    margin: 30px 0;
+    padding: 10px 0;
+}
+.btn {
+    font-size: 16px;
+}
+.header {
+    
+}
+ul {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+  }
+  
+  li {
+    
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 15px 40px;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111;
+  }

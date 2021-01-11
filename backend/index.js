@@ -26,7 +26,8 @@ let users = [{ number: 31, first_name: "Jarrett", last_name: "Allen", avatar: "h
     { number: 7, first_name: "Kevin", last_name: "Durant", avatar: "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/201142.png" },
     { number: 8, first_name: "Jeff", last_name: "Green", avatar: "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/201145.png" },
     { number: 12, first_name: "Joe", last_name: "Harris", avatar: "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/203925.png" },
-    { number: 11, first_name: "Kyrie", last_name: "Irving", avatar: "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/202681.png" }
+    { number: 11, first_name: "Kyrie", last_name: "Irving", avatar: "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/202681.png" },
+    { number: 22, first_name: "Caris", last_name: "Levert", avatar: "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/1627747.png" }
 ];
 
 const app = express();
@@ -67,8 +68,16 @@ const port = 3000;
     });
 
     app.delete('/users/:id', async(req, res) => {
+        if (req.params.id < 1) {
+            return res.status(400).send({msg:"Negative index"})
+        }
+        user = await User.findByPk(req.params.id)
+        if (user === null) {
+            return res.status(404).send({msg:"Not found"})
+        }
         user = await User.findByPk(req.params.id);
-        User.destroy
+        await user.destroy()
+        res.status(200).send({msg:"User was deleted"})
     });
 
 })();

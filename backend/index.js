@@ -42,7 +42,7 @@ const port = 3000;
         res.send(JSON.stringify(all))
     });
 
-    app.post('/user', async(req, res) => {
+    app.post('/users', async(req, res) => {
         if (true) {
             const user = await User.create({
                 number: req.body.number,
@@ -52,6 +52,23 @@ const port = 3000;
             });
         }
         res.status(201).send('{"code":201}');
+    });
+
+    app.get('/users/:id', async(req, res) => {
+
+        if (req.params.id < 1) {
+            return res.status(400).send({msg:"Negative index"})
+        }
+        user = await  User.findByPk(req.params.id)
+        if (user === null) {
+            return res.status(404).send({msg:"Not found"})
+        }
+        return res.status(200).send(user).header()
+    });
+
+    app.delete('/users/:id', async(req, res) => {
+        user = await User.findByPk(req.params.id);
+        User.destroy
     });
 
 })();

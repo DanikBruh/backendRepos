@@ -10,6 +10,11 @@ const vm = new Vue({
         });
     },
     methods: {
+        async change(index) {
+            // let form = document.getElementsByClassName("change_block")
+            // form.style.opacity = "1"
+            
+        },
         async del(index) {
             let id = this.results[index].id
             this.results.splice(index, 1)

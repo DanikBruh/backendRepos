@@ -24,12 +24,17 @@
     </div>
     <div id="people">
         <div class="person" v-for="(result,index) in results">
-            <a href="#">
+            <a :href="result.wikipedia_url" target="_blank">
                 <img :src="result.avatar" v-bind:alt="results">
+
                 <p> Number: {{ result.number }} </p>
                 <p> Name: {{ result.first_name }} {{ result.last_name }} </p>
             </a>
+            <input v-on:click="change(index)" type="button" value="change" class="btn">
             <input v-on:click="del(index)" type="button" value="delete" class="btn">
+            <div class="change_block" style="opacity: 0;">
+                <label for="change_name">Новое имя</label><input type="text" id="change_name">
+            </div>
         </div>
     </div>
 
@@ -39,7 +44,8 @@
             <label for="number">Игровой номер</label><input id="number" type="number" class="menu" placeholder="1" required><span></span><br>
             <label for="name">Имя</label><input id="name" type="text" class="menu" placeholder="Иван" required><span></span><br>
             <label for="surname">Фамилия</label><input id="surname" type="text" class="menu" placeholder="Иванов" required><span></span><br>
-            <label for="image">Ссылка на картинку</label><input id="image" type="url" class="menu" placeholder="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/1628386.png" required><span></span><br>
+            <label for="image">Ссылка URL на картинку</label><input id="image" type="url" class="menu" placeholder="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/1628386.png" required><span></span><br>
+            <label for="wikipedia">Ссылка на страницу в википедии</label><input id="wikipedia" type="url" class="menu" placeholder="https://ru.wikipedia.org/wiki/name" required><span></span><br>
             <!-- <label for="password">Пароль</label><input id="password"  type="password" class="menu" pattern=".{5,}" required placeholder="Введите пароль"><span></span><br>
                <label for="password">Повторите</label><input ud="password" type="password" class="menu" placeholder="Повторите пароль" required pattern=".{5,}"><span></span><br> -->
         </form>
@@ -57,16 +63,18 @@
             let first_name = document.forms['form'].elements['name'].value;
             let last_name = document.forms['form'].elements['surname'].value;
             let img_url = document.forms['form'].elements['image'].value;
+            let wikipedia_url = document.forms['form'].elements['wikipedia'].value;
             // let pass = document.forms['form'].elements['password'].value;
 
             let obj = {
                 number: number,
                 first_name: first_name,
                 last_name: last_name,
-                avatar: img_url
+                avatar: img_url,
+                wikipedia_url: wikipedia_url
             };
 
-            if (obj.number != null && obj.first_name != "" && obj.last_name != "" && obj.avatar != "") {
+            if (obj.number != null && obj.first_name != "" && obj.last_name != "" && obj.avatar != "" && obj.wikipedia_url != "") {
                 fetch('http://localhost:3000/users', {
                         method: 'POST',
                         body: JSON.stringify(obj),

@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require('cors');
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize("sqlite:./main.db", {
+const sequelize = new Sequelize("sqlite:./players.db", {
     logging: false,
     dialect: "sqlite",
     define: {
@@ -15,8 +15,9 @@ User.init({
     number: DataTypes.INTEGER,
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
-    avatar: DataTypes.STRING
-}, { sequelize, modelName: "Users" });
+    avatar: DataTypes.STRING,
+    wikipedia_url: DataTypes.STRING
+}, { sequelize, modelName: "Players" });
 
 let users = [{ number: 31, first_name: "Jarrett", last_name: "Allen", avatar: "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/1628386.png" },
     { number: 1, first_name: "Bruce", last_name: "Brown", "avatar": "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/1628971.png" },
@@ -49,7 +50,8 @@ const port = 3000;
                 number: req.body.number,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
-                avatar: req.body.avatar
+                avatar: req.body.avatar,
+                wikipedia_url: req.body.wikipedia_url
             });
         }
         res.status(201).send('{"code":201}');
@@ -79,7 +81,6 @@ const port = 3000;
     });
 
 })();
-
 
 app.listen(port, () => {
     console.log(`Сервер был запущен: http://localhost:${port}\n`);

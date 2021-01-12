@@ -24,9 +24,11 @@
     </div>
     <div id="people">
         <div class="person" v-for="(result,index) in results">
-            <img :src="result.avatar" v-bind:alt="results">
-            <p> Number: {{ result.number }} </p>
-            <p> Name: {{ result.first_name }} {{ result.last_name }} </p>
+            <a href="#">
+                <img :src="result.avatar" v-bind:alt="results">
+                <p> Number: {{ result.number }} </p>
+                <p> Name: {{ result.first_name }} {{ result.last_name }} </p>
+            </a>
             <input v-on:click="del(index)" type="button" value="delete" class="btn">
         </div>
     </div>
@@ -76,7 +78,7 @@
                         return response.json();
                     })
                     .catch(alert);
-                    alert("Player has been added")
+                alert("Player has been added")
             }
         })
     </script>

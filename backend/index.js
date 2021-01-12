@@ -56,28 +56,26 @@ const port = 3000;
     });
 
     app.get('/users/:id', async(req, res) => {
-
         if (req.params.id < 1) {
-            return res.status(400).send({msg:"Negative index"})
+            return res.status(400).send({ msg: "Negative index" })
         }
-        user = await  User.findByPk(req.params.id)
+        user = await User.findByPk(req.params.id)
         if (user === null) {
-            return res.status(404).send({msg:"Not found"})
+            return res.status(404).send({ msg: "Not found" })
         }
         return res.status(200).send(user).header()
     });
 
     app.delete('/users/:id', async(req, res) => {
         if (req.params.id < 1) {
-            return res.status(400).send({msg:"Negative index"})
+            return res.status(400).send({ msg: "Negative index" })
         }
         user = await User.findByPk(req.params.id)
         if (user === null) {
-            return res.status(404).send({msg:"Not found"})
+            return res.status(404).send({ msg: "Not found" })
         }
-        user = await User.findByPk(req.params.id);
         await user.destroy()
-        res.status(200).send({msg:"User was deleted"})
+        res.status(200).send({ msg: "User was deleted" })
     });
 
 })();

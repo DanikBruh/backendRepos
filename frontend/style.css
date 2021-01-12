@@ -26,12 +26,22 @@ img {
     padding: 10px 0;
 }
 
+.person img:hover {
+    transform: scale(1.1);
+}
+
+.person a {
+    text-decoration: none;
+    color: black;
+}
+
 .btn {
     font-size: 16px;
 }
 
 
 /* Header */
+
 .header {}
 
 ul {
@@ -86,6 +96,7 @@ p {
     font-weight: bold;
     margin: 10px 0;
 }
+
 label {
     display: inline-block;
     margin: 10px 0;

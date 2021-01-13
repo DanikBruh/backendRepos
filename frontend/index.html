@@ -23,38 +23,80 @@
             <li><a href="#register">Register</a></li>
         </ul>
     </div>
-    <div id="people">
+    <div id="main_block" class="people_block">
         <div class="person" v-for="(result,index) in results">
             <a :href="result.wikipedia_url" target="_blank">
                 <img :src="result.avatar" v-bind:alt="results">
-
                 <p> Number: {{ result.number }} </p>
                 <p> Name: {{ result.first_name }} {{ result.last_name }} </p>
             </a>
-            <input v-on:click="change(index)" type="button" value="change" class="btn">
-            <input v-on:click="del(index)" type="button" value="delete" class="btn">
+            
+            <input @click="del(index)" type="button" value="delete" class="btn">
             <div class="change_block" style="opacity: 0;">
-                <label for="change_name">Новое имя</label><input type="text" id="change_name">
+                <label for="change_name">Изменить имя</label><input type="text" id="change_name" placeholder="result.first_name">
+                <label for="change_name">Изменить фамилию</label><input type="text" id="change_name" placeholder="result.last_name">
+                <label for="change_name">Изменить картинку</label><input type="text" id="change_name" placeholder="result.avatar">
+
             </div>
+            <!-- <div id="app">
+                <button type="button" class="btn" @click="showModal" id="app">change</button>
+                <modal v-show="isModalVisible" @close="closeModal" />
+            </div> -->
         </div>
+
+        <div class="add_player_form">
+            <center><h3>Добавление игрока</h3></center>
+            <form id="form">
+                <label for="number">Игровой номер</label><input id="number" v-model="obj.number" type="number" class="menu" placeholder="1" required><span></span><br>
+                <label for="name">Имя</label><input id="name" v-model="obj.first_name" type="text" class="menu" placeholder="Иван" required><span></span><br>
+                <label for="surname">Фамилия</label><input id="surname" v-model="obj.last_name" type="text" class="menu" placeholder="Иванов" required><span></span><br>
+                <label for="image">Ссылка URL на картинку</label><input id="image" v-model="obj.avatar" type="url" class="menu" placeholder="https://ak-static.cms.nba.com/wp-content" required><span></span><br>
+                <label for="wikipedia">Ссылка на страницу в википедии</label for=""><input id="wikipedia" v-model="obj.wikipedia_url" type="url" class="menu" placeholder="https://ru.wikipedia.org/wiki/name" required><span></span><br>
+            </form>
+    
+            <button class="button" form="form">Добавить игрока</button>
+
+        </div>
+
     </div>
 
+<!-- Ьodal window -->
 
-    <div class="block">
-        <form id="form">
-            <label for="number">Игровой номер</label><input id="number" type="number" class="menu" placeholder="1" required><span></span><br>
-            <label for="name">Имя</label><input id="name" type="text" class="menu" placeholder="Иван" required><span></span><br>
-            <label for="surname">Фамилия</label><input id="surname" type="text" class="menu" placeholder="Иванов" required><span></span><br>
-            <label for="image">Ссылка URL на картинку</label><input id="image" type="url" class="menu" placeholder="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/1628386.png" required><span></span><br>
-            <label for="wikipedia">Ссылка на страницу в википедии</label><input id="wikipedia" type="url" class="menu" placeholder="https://ru.wikipedia.org/wiki/name" required><span></span><br>
-            <!-- <label for="password">Пароль</label><input id="password"  type="password" class="menu" pattern=".{5,}" required placeholder="Введите пароль"><span></span><br>
-               <label for="password">Повторите</label><input ud="password" type="password" class="menu" placeholder="Повторите пароль" required pattern=".{5,}"><span></span><br> -->
-        </form>
-
-        <div class="button">
-            <label class="qwe"><input id="button" form="form" type="submit">Добавить игрока</label>
-        </div>
-    </div>
+<div id="app">
+    <button type="button" class="btn" @click="showModal">change</button>
+    <modal v-show="isModalVisible" @close="closeModal"/>
+</div>
+      
+    <script type="text/x-template" id="modal">
+      
+        <transition name="modal-fade">
+            <div class="modal-backdrop" role="dialog">
+                <div class="modal" ref="modal">
+                    <header class="modal-header">
+                        <slot name="header">
+                            <h2>Изменение информации</h2>
+                            <button type="button" class="btn-close btn-right" @click="close" aria-label="Close modal">x</button>
+                        </slot>
+                    </header>
+      
+                    <section class="modal-body">
+                        <slot name="body">
+                            <form>
+                                <input type="text" value="">
+                                <input type="text" value="">
+                            </form>
+                        </slot>
+                    </section>
+      
+                    <footer class="modal-footer">
+                        <slot name="footer">
+                            <button type="button" class="btn btn-green" @click="close" aria-label="Close modal">Отмена</button>
+                        </slot>
+                    </footer>
+                </div>
+            </div>
+        </transition>
+    </script>
 
     <script src="work3.js"></script>
 

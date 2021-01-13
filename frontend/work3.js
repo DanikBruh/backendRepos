@@ -1,8 +1,15 @@
 const url = "http://localhost:3000/users";
 const vm = new Vue({
-    el: "#people",
+    el: "#main_block",
     data: {
-        results: []
+        results: [],
+        obj: {
+            number: null,
+            first_name: null,
+            last_name: null,
+            avatar: null,
+            wikipedia_url: null
+        },
     },
     mounted() {
         axios.get(url).then(res => {
@@ -10,49 +17,85 @@ const vm = new Vue({
         });
     },
     methods: {
-        async change(index) {
-            // let form = document.getElementsByClassName("change_block")
-            // form.style.opacity = "1"
-
-        },
         async del(index) {
             let id = this.results[index].id
             this.results.splice(index, 1)
             alert(`Player with ID: ${id} was deleted`)
             await axios.delete("http://localhost:3000/users/" + id)
+        },
+        async postRequest() {
+            if (this.obj.number != null && this.obj.first_name != null && this.obj.last_name != null && this.obj.avatar != null && this.obj.wikipedia_url != null) {
+                await axios.post(url, this.obj).then(res => {
+                    alert("Player has been added")
+                    return res.json();
+                });
+            }   
         }
     }
 });
 
-let myButton = document.getElementById('button');
-myButton.addEventListener('click', function(ev) {
-    let number = document.forms['form'].elements['number'].value;
-    let first_name = document.forms['form'].elements['name'].value;
-    let last_name = document.forms['form'].elements['surname'].value;
-    let img_url = document.forms['form'].elements['image'].value;
-    let wikipedia_url = document.forms['form'].elements['wikipedia'].value;
-    // let pass = document.forms['form'].elements['password'].value;
+/* Modal window */
+const Modal = {
+    name: 'modal',
+    template: '#modal',
+    methods: {
+      close(event) {
+        this.$emit('close');
+      },
+    },
+  };
+  
+  new Vue({
+    el: '#app',
+    name: 'app',
+    components: {
+      modal: Modal,
+    },
+    data () {
+      return {
+        isModalVisible: false,
+      };
+    },
+    methods: {
+      showModal() {
+        this.isModalVisible = true;
+      },
+      closeModal() {
+        this.isModalVisible = false;
+      }
+    },
+  });
+  
 
-    let obj = {
-        number: number,
-        first_name: first_name,
-        last_name: last_name,
-        avatar: img_url,
-        wikipedia_url: wikipedia_url
-    };
+// let myButton = document.getElementById('button');
+// myButton.addEventListener('click', function(ev) {
+// let number = document.forms['form'].elements['number'].value;
+// let first_name = document.forms['form'].elements['name'].value;
+// let last_name = document.forms['form'].elements['surname'].value;
+// let img_url = document.forms['form'].elements['image'].value;
+// let wikipedia_url = document.forms['form'].elements['wikipedia'].value;
+// // let pass = document.forms['form'].elements['password'].value;
 
-    if (obj.number != null && obj.first_name != "" && obj.last_name != "" && obj.avatar != "" && obj.wikipedia_url != "") {
-        fetch('http://localhost:3000/users', {
-                method: 'POST',
-                body: JSON.stringify(obj),
-                headers: {
-                    'content-type': 'application/json'
-                }
-            })
-            .then(function(response) {
-                return response.json();
-            })
-            .catch(alert);
-        alert("Player has been added")
-    }
-})
+// let obj = {
+//     number: number,
+//     first_name: first_name,
+//     last_name: last_name,
+//     avatar: img_url,
+//     wikipedia_url: wikipedia_url
+// };
+
+// if (this.obj.number != null && this.obj.first_name != "" && this.obj.last_name != "" && this.obj.avatar != "" && this.obj.wikipedia_url != "") {
+
+//     fetch(url, {
+//             method: 'POST',
+//             body: JSON.stringify(obj),
+//             headers: {
+//                 'content-type': 'application/json'
+//             }
+//         })
+//         .then(function(res) {
+//             return res.json();
+//         })
+//         .catch(alert);
+//     }
+// })

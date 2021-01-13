@@ -1,14 +1,16 @@
 body {
     margin: 0;
     padding: 0;
+    /* font-family: Arial, Helvetica, sans-serif; */
+
 }
 
-#people {
+.people_block {
     width: 80%;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin: 30px auto 0;
+    margin: 30px auto;
 }
 
 img {
@@ -25,7 +27,6 @@ img {
     min-width: 260px;
     width: 30%;
     margin: 30px 0;
-    padding: 10px 0;
 }
 
 .person img:hover {
@@ -35,10 +36,6 @@ img {
 .person a {
     text-decoration: none;
     color: black;
-}
-
-.btn {
-    font-size: 16px;
 }
 
 
@@ -72,24 +69,22 @@ li a:hover {
 
 /* Register field */
 * {
-    margin: 0;
-    padding: 0;
     font-family: sans-serif;
 }
 
-.block {
+.add_player_form {
     width: 50%;
-    margin: 0 auto;
+    text-align: center;
+    margin: 0 auto 30px;
+    position: relative;
 }
 
 #form {
-    text-align: center;
     border: 1px solid grey;
     padding: 10px;
     border-radius: 5px;
     margin-top: 40px;
     margin-bottom: 10px;
-    position: relative;
 }
 
 p {
@@ -99,7 +94,7 @@ p {
 
 label {
     display: inline-block;
-    margin: 10px 0;
+    margin: 10px;
     font-size: 14px;
     font-weight: bold;
     position: relative;
@@ -122,27 +117,28 @@ label {
     margin-left: 7px;
 }
 
+/* Button */
 .button {
-    width: 100%;
+    margin: 0 auto;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 18px;
+    cursor: pointer;
     text-align: center;
-    background: lightgrey;
-    border-radius: 5px;
-    padding: 10px 0;
-}
-
-.qwe {
-    border: 1px solid green;
-    width: 180px;
-    border-radius: 50px;
-    background: linear-gradient(to bottom, green, lightgreen, green);
-    line-height: 2em;
-    margin: 0;
-    font-weight: normal;
-}
-
-#button {
-    display: none;
-}
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  .button:hover {background-color: #3e8e41}
+  .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
 
 #form label:nth-of-type(3n) {
     margin-bottom: 30px;
@@ -152,3 +148,95 @@ label {
 .change_block {
     
 }
+
+
+
+
+
+/* Modal Window */
+
+#app {
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
+  
+  .btn {
+    /* padding: 8px 16px; */
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background: #ffffff;
+    box-shadow: 2px 2px 20px 1px;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal-header,
+  .modal-footer {
+    padding: 15px;
+    display: flex;
+  }
+  
+  .modal-header {
+    border-bottom: 1px solid #eeeeee;
+    color: #4aae9b;
+    justify-content: space-between;
+  }
+  
+  .modal-footer {
+    border-top: 1px solid #eeeeee;
+    justify-content: flex-end;
+  }
+  
+  .modal-body {
+    position: relative;
+    padding: 20px 10px;
+  }
+  
+  .btn-close {
+    border: none;
+    font-size: 20px;
+    padding: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #4aae9b;
+    background: transparent;
+  }
+  
+  .btn {
+    color: white;
+    background: #4aae9b;
+    border: 1px solid #4aae9b;
+    border-radius: 2px;
+  }
+  
+  .modal-fade-enter,
+  .modal-fade-leave-active {
+    opacity: 0;
+  }
+  
+  .modal-fade-enter-active,
+  .modal-fade-leave-active {
+    transition: opacity 0.5s ease;
+  }
+  

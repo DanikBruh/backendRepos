@@ -30,22 +30,28 @@
                 <p> Number: {{ result.number }} </p>
                 <p> Name: {{ result.first_name }} {{ result.last_name }} </p>
             </a>
-            
-            <input @click="del(index)" type="button" value="delete" class="btn">
-            <div class="change_block" style="opacity: 0;">
+
+            <div id="app">
+                <button type="button" class="btn" @click="showModal">change</button>
+                <modal v-show="isModalVisible" @close="closeModal" />
+            </div>
+
+            <button @click="del(index)" type="button" class="btn">delete</button>
+            <!-- <div class="change_block" style="opacity: 0;">
                 <label for="change_name">Изменить имя</label><input type="text" id="change_name" placeholder="result.first_name">
                 <label for="change_name">Изменить фамилию</label><input type="text" id="change_name" placeholder="result.last_name">
                 <label for="change_name">Изменить картинку</label><input type="text" id="change_name" placeholder="result.avatar">
-
-            </div>
+            </div> -->
             <!-- <div id="app">
                 <button type="button" class="btn" @click="showModal" id="app">change</button>
-                <modal v-show="isModalVisible" @close="closeModal" />
-            </div> -->
+            <modal v-show="isModalVisible" @close="closeModal" />
+        </div> -->
         </div>
 
         <div class="add_player_form">
-            <center><h3>Добавление игрока</h3></center>
+            <center>
+                <h3>Добавление игрока</h3>
+            </center>
             <form id="form">
                 <label for="number">Игровой номер</label><input id="number" v-model="obj.number" type="number" class="menu" placeholder="1" required><span></span><br>
                 <label for="name">Имя</label><input id="name" v-model="obj.first_name" type="text" class="menu" placeholder="Иван" required><span></span><br>
@@ -54,18 +60,16 @@
                 <label for="wikipedia">Ссылка на страницу в википедии</label for=""><input id="wikipedia" v-model="obj.wikipedia_url" type="url" class="menu" placeholder="https://ru.wikipedia.org/wiki/name" required><span></span><br>
             </form>
     
-            <button class="button" form="form">Добавить игрока</button>
+            <button class="button" form="form" @click="postRequest">Добавить игрока</button>
 
         </div>
-
+        
+        
     </div>
 
 <!-- Ьodal window -->
 
-<div id="app">
-    <button type="button" class="btn" @click="showModal">change</button>
-    <modal v-show="isModalVisible" @close="closeModal"/>
-</div>
+   
       
     <script type="text/x-template" id="modal">
       
@@ -81,9 +85,10 @@
       
                     <section class="modal-body">
                         <slot name="body">
-                            <form>
-                                <input type="text" value="">
-                                <input type="text" value="">
+                            <form action="" id="change_form">
+                                <input type="text" placeholder="Новое имя" value="">
+                                <input type="text" placeholder="Новая фамилия" value="">
+                                <button form="change_form">Изменить</button>
                             </form>
                         </slot>
                     </section>

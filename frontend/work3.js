@@ -1,6 +1,21 @@
 const url = "http://localhost:3000/users";
+
+/* Modal window */
+const Modal = {
+    name: 'modal',
+    template: '#modal',
+    methods: {
+        close(event) {
+            this.$emit('close');
+        }
+    }
+};
+
 const vm = new Vue({
     el: "#main_block",
+    components: {
+        modal: Modal,
+    },
     data: {
         results: [],
         obj: {
@@ -10,6 +25,7 @@ const vm = new Vue({
             avatar: null,
             wikipedia_url: null
         },
+        isModalVisible: false
     },
     mounted() {
         axios.get(url).then(res => {
@@ -27,45 +43,41 @@ const vm = new Vue({
             if (this.obj.number != null && this.obj.first_name != null && this.obj.last_name != null && this.obj.avatar != null && this.obj.wikipedia_url != null) {
                 await axios.post(url, this.obj).then(res => {
                     alert("Player has been added")
+                    location.reload();
                     return res.json();
                 });
-            }   
+            }
+        },
+        showModal() {
+            this.isModalVisible = true;
+        },
+        closeModal() {
+            this.isModalVisible = false;
         }
     }
 });
 
-/* Modal window */
-const Modal = {
-    name: 'modal',
-    template: '#modal',
-    methods: {
-      close(event) {
-        this.$emit('close');
-      },
-    },
-  };
-  
-  new Vue({
-    el: '#app',
-    name: 'app',
-    components: {
-      modal: Modal,
-    },
-    data () {
-      return {
-        isModalVisible: false,
-      };
-    },
-    methods: {
-      showModal() {
-        this.isModalVisible = true;
-      },
-      closeModal() {
-        this.isModalVisible = false;
-      }
-    },
-  });
-  
+
+
+// new Vue({
+//     el: '#app',
+//     name: 'app',
+//     components: {
+//         modal: Modal,
+//     },
+//     data: {
+//         isModalVisible: false
+//     },
+//     methods: {
+//         showModal() {
+//             this.isModalVisible = true;
+//         },
+//         closeModal() {
+//             this.isModalVisible = false;
+//         }
+//     },
+// });
+
 
 // let myButton = document.getElementById('button');
 // myButton.addEventListener('click', function(ev) {

@@ -1,8 +1,12 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
     /* font-family: Arial, Helvetica, sans-serif; */
+}
 
+* {
+    font-family: sans-serif;
 }
 
 .people_block {
@@ -26,7 +30,7 @@ img {
     text-align: center;
     min-width: 260px;
     width: 30%;
-    margin: 30px 0;
+    margin: 50px 0;
 }
 
 .person img:hover {
@@ -40,6 +44,7 @@ img {
 
 
 /* Header */
+
 .header {}
 
 ul {
@@ -68,12 +73,9 @@ li a:hover {
 
 
 /* Register field */
-* {
-    font-family: sans-serif;
-}
 
 .add_player_form {
-    width: 50%;
+    min-width: 100%;
     text-align: center;
     margin: 0 auto 30px;
     position: relative;
@@ -117,7 +119,9 @@ label {
     margin-left: 7px;
 }
 
+
 /* Button */
+
 .button {
     margin: 0 auto;
     display: inline-block;
@@ -132,25 +136,21 @@ label {
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
-  }
-  .button:hover {background-color: #3e8e41}
-  .button:active {
+}
+
+.button:hover {
+    background-color: #3e8e41
+}
+
+.button:active {
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
-  }
+}
 
 #form label:nth-of-type(3n) {
     margin-bottom: 30px;
 }
-
-/* Changing form */
-.change_block {
-    
-}
-
-
-
 
 
 /* Modal Window */
@@ -161,17 +161,18 @@ label {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
-  }
-  
-  .btn {
-    /* padding: 8px 16px; */
+    display: inline;
+}
+
+.btn {
+    padding: 6px 14px;
     border-radius: 3px;
     font-size: 14px;
     cursor: pointer;
-  }
-  
-  .modal-backdrop {
+}
+
+.modal-backdrop {
+    z-index: 1;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -181,39 +182,39 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .modal {
+}
+
+.modal {
     background: #ffffff;
     box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
     display: flex;
     flex-direction: column;
-  }
-  
-  .modal-header,
-  .modal-footer {
+}
+
+.modal-header,
+.modal-footer {
     padding: 15px;
     display: flex;
-  }
-  
-  .modal-header {
+}
+
+.modal-header {
     border-bottom: 1px solid #eeeeee;
     color: #4aae9b;
     justify-content: space-between;
-  }
-  
-  .modal-footer {
+}
+
+.modal-footer {
     border-top: 1px solid #eeeeee;
     justify-content: flex-end;
-  }
-  
-  .modal-body {
+}
+
+.modal-body {
     position: relative;
     padding: 20px 10px;
-  }
-  
-  .btn-close {
+}
+
+.btn-close {
     border: none;
     font-size: 20px;
     padding: 20px;
@@ -221,22 +222,21 @@ label {
     font-weight: bold;
     color: #4aae9b;
     background: transparent;
-  }
-  
-  .btn {
+}
+
+.btn {
     color: white;
     background: #4aae9b;
     border: 1px solid #4aae9b;
     border-radius: 2px;
-  }
-  
-  .modal-fade-enter,
-  .modal-fade-leave-active {
+}
+
+.modal-fade-enter,
+.modal-fade-leave-active {
     opacity: 0;
-  }
-  
-  .modal-fade-enter-active,
-  .modal-fade-leave-active {
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
     transition: opacity 0.5s ease;
-  }
-  
+}

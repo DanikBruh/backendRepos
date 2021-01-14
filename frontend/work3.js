@@ -1,21 +1,21 @@
 const url = "http://localhost:3000/users";
 
 /* Modal window */
-const Modal = {
-    name: 'modal',
-    template: '#modal',
-    methods: {
-        close(event) {
-            this.$emit('close');
-        }
-    }
-};
+// const Modal = {
+//     name: 'modal',
+//     template: '#modal',
+//     methods: {
+//         close(event) {
+//             this.$emit('close');
+//         }
+//     }
+// };
 
 const vm = new Vue({
     el: "#main_block",
-    components: {
-        modal: Modal,
-    },
+    // components: {
+    //     modal: Modal,
+    // },
     data: {
         results: [],
         obj: {
@@ -25,7 +25,7 @@ const vm = new Vue({
             avatar: null,
             wikipedia_url: null
         },
-        isModalVisible: false
+        // isModalVisible: false
     },
     mounted() {
         axios.get(url).then(res => {
@@ -48,35 +48,23 @@ const vm = new Vue({
                 });
             }
         },
-        showModal() {
-            this.isModalVisible = true;
+        async putRequest(index) {
+            let id = this.results[index].id
+            alert(url + "/" + id);
+            await axios.put(url + "/" + id, this.obj).then(res => {
+                console.log(res.body);
+            });
         },
-        closeModal() {
-            this.isModalVisible = false;
-        }
+        // showModal() {
+        //     this.isModalVisible = true;
+        // },
+        // closeModal() {
+        //     this.isModalVisible = false;
+        // }
     }
 });
 
 
-
-// new Vue({
-//     el: '#app',
-//     name: 'app',
-//     components: {
-//         modal: Modal,
-//     },
-//     data: {
-//         isModalVisible: false
-//     },
-//     methods: {
-//         showModal() {
-//             this.isModalVisible = true;
-//         },
-//         closeModal() {
-//             this.isModalVisible = false;
-//         }
-//     },
-// });
 
 
 // let myButton = document.getElementById('button');

@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>WorkDay3</title>
 </head>
@@ -24,19 +23,34 @@
         </ul>
     </div>
     <div id="main_block" class="people_block">
-        <div class="person" v-for="(result,index) in results">
-            <a :href="result.wikipedia_url" target="_blank">
-                <img :src="result.avatar" v-bind:alt="results">
-                <p> Number: {{ result.number }} </p>
-                <p> Name: {{ result.first_name }} {{ result.last_name }} </p>
-            </a>
+        <div class="person flip-card" v-for="(result,index) in results">
+            <div class="card-inner">
+                <div class="card-front">
+                    <a :href="result.wikipedia_url" target="_blank">
+                        <img :src="result.avatar" v-bind:alt="results">
+                        <p> Number: {{ result.number }} </p>
+                        <p> Name: {{ result.first_name }} {{ result.last_name }} </p>
+                    </a>
+                </div>
+                <div class="card-back">
+                    <form action="" id="change_form">
+                        <input type="number" placeholder="Новый номер" :value="result.number"><br>
+                        <input type="text" placeholder="Новое имя" :value="result.first_name"><br>
+                        <input type="text" placeholder="Новая фамилия" :value="result.last_name"><br>
+                        <input type="text" placeholder="Новая ссылка на картинку" :value="result.avatar"><br>
+                        <input type="url" placeholder="Новая ссылка на страницу" :value="result.wikipedia_url"><br>
+                    </form>
+                    <button class="button" form="change_form" @click="putRequest(index)">Изменить</button>
+                </div>
+            </div>
+            
 
-            <div id="app">
+            <!-- <div id="app">
                 <button type="button" class="btn" @click="showModal">change</button>
                 <modal v-show="isModalVisible" @close="closeModal" />
-            </div>
-
-            <button @click="del(index)" type="button" class="btn">delete</button>
+            </div> -->
+            <button type="button" class="btn change" @click="">change</button>
+            <button  type="button" class="btn" @click="del(index)">delete</button>
             <!-- <div class="change_block" style="opacity: 0;">
                 <label for="change_name">Изменить имя</label><input type="text" id="change_name" placeholder="result.first_name">
                 <label for="change_name">Изменить фамилию</label><input type="text" id="change_name" placeholder="result.last_name">
@@ -67,13 +81,10 @@
         
     </div>
 
-<!-- Ьodal window -->
-
-   
       
-    <script type="text/x-template" id="modal">
+    <!-- <script type="text/x-template" id="modal">
       
-        <transition name="modal-fade">
+        <transition name="modal-fade" id="app">
             <div class="modal-backdrop" role="dialog">
                 <div class="modal" ref="modal">
                     <header class="modal-header">
@@ -86,22 +97,25 @@
                     <section class="modal-body">
                         <slot name="body">
                             <form action="" id="change_form">
-                                <input type="text" placeholder="Новое имя" value="">
-                                <input type="text" placeholder="Новая фамилия" value="">
-                                <button form="change_form">Изменить</button>
+                                <input type="number" placeholder="Новый номер" value=""><br>
+                                <input type="text" placeholder="Новое имя" value=""><br>
+                                <input type="text" placeholder="Новая фамилия" value=""><br>
+                                <input type="text" placeholder="Новая ссылка на картинку" value=""><br>
+                                <input type="url" placeholder="Новая ссылка на страницу" value=""><br>
                             </form>
+                            <button class="button" form="change_form" @click="">Изменить</button>
                         </slot>
                     </section>
       
                     <footer class="modal-footer">
                         <slot name="footer">
-                            <button type="button" class="btn btn-green" @click="close" aria-label="Close modal">Отмена</button>
+                            <button type="button" class="btn" @click="close" aria-label="Close modal">Отмена</button>
                         </slot>
                     </footer>
                 </div>
             </div>
         </transition>
-    </script>
+    </script> -->
 
     <script src="work3.js"></script>
 

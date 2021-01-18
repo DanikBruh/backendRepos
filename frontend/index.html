@@ -24,7 +24,7 @@
     </div>
     <div id="main_block" class="people_block">
         <div class="person flip-card" v-for="(result,index) in results">
-            <div class="card-inner" id="card-inner">
+            <div class="card-inner" >
                 <div class="card-front">
                     <a :href="result.wikipedia_url" target="_blank">
                         <img :src="result.avatar" v-bind:alt="results">
@@ -33,30 +33,30 @@
                     </a>
                 </div>
                 <div class="card-back">
-                    <form action="" id="change_form">
-                        <input type="number" placeholder="Новый номер" v-model="obj.number" required><br>
-                        <input type="text" placeholder="Новое имя"  v-model="obj.first_name" required><br>
-                        <input type="text" placeholder="Новая фамилия"  v-model="obj.last_name" required><br>
-                        <input type="text" placeholder="Новая ссылка на картинку"  v-model="obj.avatar" required><br>
-                        <input type="url" placeholder="Новая ссылка на страницу"  v-model="obj.wikipedia_url" required><br>
+                    <form action="" class="change_form">
+                        <input type="number" placeholder="Новый номер" v-model="obj.number"><br>
+                        <input type="text" placeholder="Новое имя" v-model="obj.first_name"><br>
+                        <input type="text" placeholder="Новая фамилия" v-model="obj.last_name"><br>
+                        <input type="text" placeholder="Новая ссылка на картинку" v-model="obj.avatar"><br>
+                        <input type="url" placeholder="Новая ссылка на страницу" v-model="obj.wikipedia_url"><br>
                     </form>
-                    <button class="button" form="change_form" @click="putRequest(index)">Изменить</button>
+                    <button class="button" form="change_form" @click="putRequest(index)">Accept</button>
                 </div>
             </div>
         
-            <button type="button" class="btn change" id="change_button" onclick="changeInfo(index)">change</button>
+            <button type="button" class="btn change" @click="changeInfo(index)">change</button>
             <button  type="button" class="btn" @click="del(index)">delete</button>
             
         </div>
 
         <div class="add_player_form">
-            <center><h3>Добавление игрока</h3></center>
+            <center><h3>Adding player</h3></center>
             <form id="form">
-                <label for="number">Игровой номер</label><input id="number" v-model="obj.number" type="number" class="menu" placeholder="1" required><span></span><br>
-                <label for="name">Имя</label><input id="name" v-model="obj.first_name" type="text" class="menu" placeholder="Иван" required><span></span><br>
-                <label for="surname">Фамилия</label><input id="surname" v-model="obj.last_name" type="text" class="menu" placeholder="Иванов" required><span></span><br>
-                <label for="image">Ссылка URL на картинку</label><input id="image" v-model="obj.avatar" type="url" class="menu" placeholder="https://ak-static.cms.nba.com/wp-content" required><span></span><br>
-                <label for="wikipedia">Ссылка на страницу в википедии</label for=""><input id="wikipedia" v-model="obj.wikipedia_url" type="url" class="menu" placeholder="https://ru.wikipedia.org/wiki/name" required><span></span><br>
+                <label for="number">Player number</label><input id="number" v-model="obj.number" type="number" class="menu" placeholder="1" required><span></span><br>
+                <label for="name">Name</label><input id="name" v-model="obj.first_name" type="text" class="menu" placeholder="Иван" required><span></span><br>
+                <label for="surname">Surname</label><input id="surname" v-model="obj.last_name" type="text" class="menu" placeholder="Иванов" required><span></span><br>
+                <label for="image">Photo URL</label><input id="image" v-model="obj.avatar" type="url" class="menu" placeholder="https://ak-static.cms.nba.com/wp-content" required><span></span><br>
+                <label for="wikipedia">About player page link</label for=""><input id="wikipedia" v-model="obj.wikipedia_url" type="url" class="menu" placeholder="https://ru.wikipedia.org/wiki/name" required><span></span><br>
             </form>
     
             <button class="button" form="form" @click="postRequest">Добавить игрока</button>

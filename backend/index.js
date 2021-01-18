@@ -46,7 +46,7 @@ const port = 3000;
 
     app.post('/users', async(req, res) => {
         if (true) {
-            const user = await User.create({
+            await User.create({
                 number: req.body.number,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
@@ -81,8 +81,10 @@ const port = 3000;
     });
 
     app.put('/users/:id', async(req,res) => {
-        console.log("\n\n\n\n req user" + req.body);
-        console.log("\n\n\n" + typeof req.body);
+        console.log("req body: " + req.body.first_name);
+        console.log("req body: " + req.body.last_name);
+        console.log("req body: " + req.body.avatar);
+        console.log("req body: " + req.body.wikipedia_url);
         user = await User.findByPk(req.params.id)
         if (user === null) {
             return res.status(404).send({ msg: "Not found" })
@@ -92,7 +94,6 @@ const port = 3000;
         user.last_name = req.body.last_name
         user.avatar = req.body.avatar
         user.wikipedia_url = req.body.wikipedia_url
-        console.log("current user\n\n\n\n" + user);
         await user.save()
         res.status(200).send({ msg: "User was updated" })
     })
@@ -102,6 +103,3 @@ const port = 3000;
 app.listen(port, () => {
     console.log(`Сервер был запущен: http://localhost:${port}\n`);
 })
-
-
-// https://www.toptal.com/developers/gitignore/api/csharp

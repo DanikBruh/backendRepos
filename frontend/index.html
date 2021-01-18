@@ -24,7 +24,7 @@
     </div>
     <div id="main_block" class="people_block">
         <div class="person flip-card" v-for="(result,index) in results">
-            <div class="card-inner">
+            <div class="card-inner" id="card-inner">
                 <div class="card-front">
                     <a :href="result.wikipedia_url" target="_blank">
                         <img :src="result.avatar" v-bind:alt="results">
@@ -34,38 +34,23 @@
                 </div>
                 <div class="card-back">
                     <form action="" id="change_form">
-                        <input type="number" placeholder="Новый номер" :value="result.number"><br>
-                        <input type="text" placeholder="Новое имя" :value="result.first_name"><br>
-                        <input type="text" placeholder="Новая фамилия" :value="result.last_name"><br>
-                        <input type="text" placeholder="Новая ссылка на картинку" :value="result.avatar"><br>
-                        <input type="url" placeholder="Новая ссылка на страницу" :value="result.wikipedia_url"><br>
+                        <input type="number" placeholder="Новый номер" v-model="obj.number" required><br>
+                        <input type="text" placeholder="Новое имя"  v-model="obj.first_name" required><br>
+                        <input type="text" placeholder="Новая фамилия"  v-model="obj.last_name" required><br>
+                        <input type="text" placeholder="Новая ссылка на картинку"  v-model="obj.avatar" required><br>
+                        <input type="url" placeholder="Новая ссылка на страницу"  v-model="obj.wikipedia_url" required><br>
                     </form>
                     <button class="button" form="change_form" @click="putRequest(index)">Изменить</button>
                 </div>
             </div>
-            
-
-            <!-- <div id="app">
-                <button type="button" class="btn" @click="showModal">change</button>
-                <modal v-show="isModalVisible" @close="closeModal" />
-            </div> -->
-            <button type="button" class="btn change" @click="">change</button>
+        
+            <button type="button" class="btn change" id="change_button" onclick="changeInfo(index)">change</button>
             <button  type="button" class="btn" @click="del(index)">delete</button>
-            <!-- <div class="change_block" style="opacity: 0;">
-                <label for="change_name">Изменить имя</label><input type="text" id="change_name" placeholder="result.first_name">
-                <label for="change_name">Изменить фамилию</label><input type="text" id="change_name" placeholder="result.last_name">
-                <label for="change_name">Изменить картинку</label><input type="text" id="change_name" placeholder="result.avatar">
-            </div> -->
-            <!-- <div id="app">
-                <button type="button" class="btn" @click="showModal" id="app">change</button>
-            <modal v-show="isModalVisible" @close="closeModal" />
-        </div> -->
+            
         </div>
 
         <div class="add_player_form">
-            <center>
-                <h3>Добавление игрока</h3>
-            </center>
+            <center><h3>Добавление игрока</h3></center>
             <form id="form">
                 <label for="number">Игровой номер</label><input id="number" v-model="obj.number" type="number" class="menu" placeholder="1" required><span></span><br>
                 <label for="name">Имя</label><input id="name" v-model="obj.first_name" type="text" class="menu" placeholder="Иван" required><span></span><br>

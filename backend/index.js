@@ -1,8 +1,8 @@
-const express = require("express");
+const express = require('express');
 const cors = require('cors');
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize("sqlite:./players.db", {
+const sequelize = new Sequelize('sqlite:./players.db', {
     logging: false,
     dialect: "sqlite",
     define: {
@@ -17,7 +17,7 @@ User.init({
     last_name: DataTypes.STRING,
     avatar: DataTypes.STRING,
     wikipedia_url: DataTypes.STRING
-}, { sequelize, modelName: "Players" });
+}, { sequelize, modelName: 'Players' });
 
 const app = express();
 app.use(express.json());
@@ -73,11 +73,15 @@ const port = 3000;
         if (user === null) {
             return res.status(404).send({ msg: "Not found" })
         }
-        if(req.body.number!= null) user.number = req.body.number
-        if(req.body.first_name!= null) user.first_name = req.body.first_name
-        if(req.body.last_name!= null) user.last_name = req.body.last_name
-        if(req.body.avatar!= null) user.avatar = req.body.avatar
-        if(req.body.wikipedia_url!= null) user.wikipedia_url = req.body.wikipedia_url
+        var body = req.body
+        if(body.number == '' || body.first_name == '' || body.last_name == '' || body.avatar == '' || body.wikipedia_url == '') {
+            return res.status(400).send({ msg: "Incorrect request" })
+        }
+        if(body.number!= "") user.number = body.number
+        if(body.first_name!= "") user.first_name = body.first_name
+        if(body.last_name!= "") user.last_name = body.last_name
+        if(body.avatar!= "") user.avatar = body.avatar
+        if(body.wikipedia_url!= "") user.wikipedia_url = body.wikipedia_url
         await user.save()
         res.status(200).send({ msg: "User was updated" })
     })

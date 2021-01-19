@@ -33,12 +33,12 @@
                     </a>
                 </div>
                 <div class="card-back">
-                    <form action="" class="change_form">
-                        <input type="number" placeholder="Новый номер" v-model="obj.number"><br>
-                        <input type="text" placeholder="Новое имя" v-model="obj.first_name"><br>
-                        <input type="text" placeholder="Новая фамилия" v-model="obj.last_name"><br>
-                        <input type="text" placeholder="Новая ссылка на картинку" v-model="obj.avatar"><br>
-                        <input type="url" placeholder="Новая ссылка на страницу" v-model="obj.wikipedia_url"><br>
+                    <form class="change_form">
+                        <input type="number" :value="result.number" ><br>
+                        <input type="text"  :value="result.first_name"><br>
+                        <input type="text" placeholder="Новая фамилия" :value="result.last_name"><br>
+                        <input type="text" placeholder="Новая ссылка на картинку" :value="result.avatar"><br>
+                        <input type="url" placeholder="Новая ссылка на страницу" :value="result.wikipedia_url"><br>
                     </form>
                     <button class="button" form="change_form" @click="putRequest(index)">Accept</button>
                 </div>
@@ -52,9 +52,9 @@
         <div class="add_player_form">
             <center><h3>Adding player</h3></center>
             <form id="form">
-                <label for="number">Player number</label><input id="number" v-model="obj.number" type="number" class="menu" placeholder="1" required><span></span><br>
-                <label for="name">Name</label><input id="name" v-model="obj.first_name" type="text" class="menu" placeholder="Иван" required><span></span><br>
-                <label for="surname">Surname</label><input id="surname" v-model="obj.last_name" type="text" class="menu" placeholder="Иванов" required><span></span><br>
+                <label for="number">Player number</label><input id="number" v-model="obj.number" type="number" class="menu" placeholder="23" required><span></span><br>
+                <label for="name">Name</label><input id="name" v-model="obj.first_name" type="text" class="menu" placeholder="James" required><span></span><br>
+                <label for="surname">Surname</label><input id="surname" v-model="obj.last_name" type="text" class="menu" placeholder="Lebron" required><span></span><br>
                 <label for="image">Photo URL</label><input id="image" v-model="obj.avatar" type="url" class="menu" placeholder="https://ak-static.cms.nba.com/wp-content" required><span></span><br>
                 <label for="wikipedia">About player page link</label for=""><input id="wikipedia" v-model="obj.wikipedia_url" type="url" class="menu" placeholder="https://ru.wikipedia.org/wiki/name" required><span></span><br>
             </form>

@@ -38,10 +38,23 @@ const vm = new Vue({
             }
         },
         async putRequest(index) {
-            let id = this.results[index].id
-            await axios.put(url + "/" + id, this.obj).then(res => {
+            let id = this.results[index].id;
+            var parentDOM = document.getElementById("main_block");
+            let inputs = parentDOM.children[index].getElementsByClassName("change_form")[0].getElementsByTagName("input");
+            var tempObj = {
+                number: inputs[0].value,
+                first_name: inputs[1].value,
+                last_name: inputs[2].value,
+                avatar: inputs[3].value,
+                wikipedia_url: inputs[4].value
+            };
+            await axios.put(url + "/" + id, tempObj)
+            .then(res => {
                 alert("Player's information has been changed!")
                 location.reload();
+            })
+            .catch(function (error) {
+                alert(error);
             });
         },
         async changeInfo(index) {

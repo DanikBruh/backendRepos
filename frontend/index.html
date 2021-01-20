@@ -22,6 +22,15 @@
             <li><a href="#register">Register</a></li>
         </ul>
     </div>
+
+    <div class="sort">
+        <select onchange="sortBy()" id="sort_select">
+            <!-- <option value="По командам" on>По командам</option> -->
+            <option value="По номеру">По номеру</option>
+            <option value="По имени">По имени</option>
+        </select>
+    </div>
+
     <div id="main_block" class="people_block">
         <div class="person flip-card" v-for="(result,index) in results">
             <div class="card-inner" >

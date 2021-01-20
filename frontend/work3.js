@@ -54,7 +54,7 @@ const vm = new Vue({
                 location.reload();
             })
             .catch(function (error) {
-                alert(error);
+                alert("Incorrect input value");
             });
         },
         async changeInfo(index) {
@@ -78,5 +78,27 @@ const vm = new Vue({
                 }
             }
         }
+        
     }
 });
+
+function sortBy() {
+    var selectBox = document.getElementById("sort_select");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    switch (selectedValue) {
+        // case 'По командам':
+        //     vm.results.sort();
+        //     alert("List is sorted by team!");
+        //     break;
+        case 'По номеру':
+            vm.results.sort((a, b) => a.number - b.number);
+            alert("List is sorted ny number!");
+            break;
+        case 'По имени':
+            // vm.results.sort((a, b) => a.first_name - b.first_name);
+            vm.results.sort((a, b) => (a.first_name > b.first_name) ? 1 : -1);
+
+            alert("List is sorted by name!");
+            break;
+    }
+}

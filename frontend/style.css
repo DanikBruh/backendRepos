@@ -14,6 +14,7 @@ body {
     justify-content: space-around;
     flex-wrap: wrap;
     margin: 30px auto;
+    position: relative;
 }
 
 img {
@@ -190,6 +191,7 @@ label {
     margin-bottom: 30px;
 }
 
+/* Person buttons */
 .btn {
   padding: 6px 14px;
   font-size: 14px;
@@ -201,6 +203,16 @@ label {
 }
 .btn:hover {
 background-color: #111;
+}
+
+/* Sorting */
+.sort {
+    position: absolute;
+    right: 0;
+    
+}
+.sort select {
+    padding: 5px 10px;
 }
 
 

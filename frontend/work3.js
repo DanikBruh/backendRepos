@@ -57,7 +57,7 @@ const vm = new Vue({
                 alert("Incorrect input value");
             });
         },
-        async changeInfo(index) {
+        async rotateChangeBlock(index) {
             var parentDOM = document.getElementById("main_block");
             if(!this.rotated) {
                 parentDOM.children[index].firstChild.style.transform = "rotateY(180deg)";
@@ -78,7 +78,6 @@ const vm = new Vue({
                 }
             }
         }
-        
     }
 });
 
@@ -97,7 +96,6 @@ function sortBy() {
         case 'По имени':
             // vm.results.sort((a, b) => a.first_name - b.first_name);
             vm.results.sort((a, b) => (a.first_name > b.first_name) ? 1 : -1);
-
             alert("List is sorted by name!");
             break;
     }
